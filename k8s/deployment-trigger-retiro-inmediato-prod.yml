@@ -40,4 +40,4 @@ spec:
         - containerPort: 10804
         imagePullPolicy: IfNotPresent
       imagePullSecrets:
-      - name: gitlabsecret
+      - name: gitlabsecretonpremise
