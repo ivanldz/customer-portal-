@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: trigger-retiro-inmediato
+  namespace: default
+spec:
+  selector:
+    app: trigger-retiro-inmediato
+  ports:
+  - port: 10804
+    targetPort: 10804
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trigger-retiro-inmediato
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: trigger-retiro-inmediato
+  template:
+    metadata:
+      labels:
+        app: trigger-retiro-inmediato
+    spec:
+      containers:
+      - name: app
+        image: gitlab.e-cruce.com:5050/cruce-team/nanolog/backend/trigger-retiro-inmediato:latest
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "10m"
+          limits:
+            memory: "256Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 10804
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: gitlabsecret

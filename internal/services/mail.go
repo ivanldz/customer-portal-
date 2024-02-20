@@ -3,6 +3,7 @@ package services
 import (
 	"errors"
 	"fmt"
+	"regexp"
 	"strings"
 	"trigger-retiro-sucursal/internal/entities"
 	"trigger-retiro-sucursal/internal/repositories"
@@ -54,12 +55,16 @@ func getEmailStore(sla entities.SLA) (string, error) {
 	}
 
 	for _, b := range *branches {
-		if address == tools.FixUnicode(b.Address) {
+		// Busca la direccion por expresion regular
+		pattern := tools.FixUnicode(b.Address)
+		expReg := regexp.MustCompile(pattern)
+		if expReg.FindString(address) != "" {
 			email = b.Email
+			break
 		}
 	}
 
-	if email != "" {
+	if email == "" {
 		return email, errors.New("sucursal no encontrada")
 	}
 

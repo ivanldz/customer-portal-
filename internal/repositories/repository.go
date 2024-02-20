@@ -30,7 +30,7 @@ func GetOrderDetails(orderId string) (*entities.OrderDetails, error) {
 
 func GetStoreBranches() (*[]entities.StoreBranch, error) {
 	res, err := Request(ConfigRequest{
-		Endpoint: "api/dataentities/SU/search?_fields=email,address,store",
+		Endpoint: "/api/dataentities/SU/search?_fields=email,address,store",
 		Method:   "GET",
 	})
 
@@ -65,7 +65,7 @@ func PostEmail(email entities.Email) error {
 	}
 
 	if res.Status != 201 {
-		return errors.New("error creating order")
+		return errors.New("error creating email")
 	}
 
 	return nil

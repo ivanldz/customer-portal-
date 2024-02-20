@@ -2,7 +2,7 @@ package entities
 
 type Email struct {
 	Fullname      string `json:"fullname"`
-	PhoneNumber   string `json:"phone_number"`
+	PhoneNumber   string `json:"phone"`
 	Dni           string `json:"dni"`
 	PaymentMethod string `json:"payment_method"`
 	OrderId       string `json:"order_id"`

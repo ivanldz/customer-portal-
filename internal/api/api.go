@@ -12,7 +12,7 @@ func Start() {
 	port := settings.GetVar("PORT")
 	app := fiber.New(fiber.Config{
 		ServerHeader: "Fiber",
-		AppName:      "Api dashboard-store-branches v1.0.0",
+		AppName:      "Api trigger-retiro-inmediato v1.0.0",
 	})
 
 	app.Use(cors.New())
