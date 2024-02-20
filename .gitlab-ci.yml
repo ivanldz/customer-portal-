@@ -1,0 +1,19 @@
+include:
+  - project: "cruce-team/cruce/templates/backend/cicd/base"
+    file: ".gitlab-onpremise-cruce.yml"
+
+test:
+    script:
+    - echo 'Tests not found'
+
+#Build extends
+.build:
+  variables:
+    CI_DOCKER_PASSWORD: "$CI_DOCKER_PASSWORD"
+    CI_DOCKER_USER: "$CI_DOCKER_USER"
+
+#Deploy extends
+.deploy:
+  variables:
+    CI_SHORT_NAME: "$CI_SHORT_NAME"
+    

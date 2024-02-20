@@ -31,8 +31,8 @@ func Request(conf ConfigRequest) (*Response, error) {
 
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
-	req.Header.Add("X-VTEX-API-AppKey", settings.GetVar("VTEX_APPKEY"))
-	req.Header.Add("X-VTEX-API-AppToken", settings.GetVar("VTEX_APPTOKEN"))
+	req.Header.Add("X-VTEX-API-AppKey", settings.GetVar("VTEX_APIKEY"))
+	req.Header.Add("X-VTEX-API-AppToken", settings.GetVar("VTEX_APITOKEN"))
 
 	for k := range conf.Headers {
 		req.Header.Add(k, conf.Headers[k])
