@@ -1,8 +1,7 @@
-FROM golang:alpine AS builder
+FROM golang:1.19
 WORKDIR /app
 COPY . .
-RUN go build -o miapp
-FROM scratch
-COPY --from=builder /app/miapp /
+RUN go build
 EXPOSE 10804
-CMD ["/miapp"]
+
+CMD ["./trigger-retiro-sucursal"] 
