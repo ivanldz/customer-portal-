@@ -38,6 +38,6 @@ spec:
             cpu: "100m"
         ports:
         - containerPort: 10804
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
       imagePullSecrets:
       - name: gitlabsecretonpremise
