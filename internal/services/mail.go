@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
+	"strconv"
 	"strings"
 	"trigger-retiro-sucursal/internal/entities"
 	"trigger-retiro-sucursal/internal/repositories"
@@ -74,7 +75,8 @@ func getEmailStore(sla entities.SLA) (string, error) {
 func getProductLists(products []entities.Item) string {
 	var list []string
 	for _, item := range products {
-		list = append(list, "<li>"+item.ID+" - "+item.Name+"</li>")
+		quantity := strconv.Itoa(item.Quantity)
+		list = append(list, "<tr><td>"+item.ID+"</td><td>"+item.Name+"</td><td>"+quantity+"</td></tr>")
 	}
-	return "<ul>" + strings.Join(list, "\n") + "</ul>"
+	return "<table><tr><th>Sku</th><th>Nombre</th><th>Cantidad</th></tr>" + strings.Join(list, "\n") + "</table>"
 }
