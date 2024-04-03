@@ -12,7 +12,8 @@ import (
 )
 
 func SendWithdrawalEmail(orderId string) error {
-	order, err := repositories.GetOrderDetails(orderId)
+	vtex := repositories.NewVtexClient()
+	order, err := vtex.GetOrderDetails(orderId)
 	if err != nil {
 		return err
 	}
@@ -43,13 +44,14 @@ func SendWithdrawalEmail(orderId string) error {
 		ProductsList: productsList,
 	}
 
-	return repositories.PostEmail(email)
+	return vtex.PostEmail(email)
 }
 
 func getEmailStore(sla entities.SLA) (string, error) {
 	var email string
+	vtex := repositories.NewVtexClient()
 	address := tools.FixUnicode(sla.PickupStoreInfo.Address.Street + " " + sla.PickupStoreInfo.Address.Number)
-	branches, err := repositories.GetStoreBranches()
+	branches, err := vtex.GetStoreBranches()
 	if err != nil {
 		fmt.Println(err.Error())
 		return "", err
