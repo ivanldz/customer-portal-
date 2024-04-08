@@ -42,12 +42,11 @@ func IntegrateToLocker(orderData entities.HookData) error {
 	}
 	lockerSizeId := lockerSize.Content[0].ID
 
-	reg := regexp.MustCompile("[^0-9]+") // la regex remueve los datos no numericos
 	err = bw.OperationPickup(entities.OperationPickup{
 		LockerId:          lockerId,
 		LockerIdSize:      lockerSizeId,
 		Email:             order.ClientData.Email,
-		Phone:             reg.ReplaceAllString(order.ClientData.Phone, ""),
+		Phone:             parsePhoneNumber(order.ClientData.Phone),
 		ReceiptName:       order.ClientData.FirstName + " " + order.ClientData.LastName,
 		ExternalReference: order.OrderID,
 	})
@@ -61,4 +60,15 @@ func IntegrateToLocker(orderData entities.HookData) error {
 func IsOrderValid(order *entities.OrderDetails) bool {
 	sla := order.ShippingData.LogisticsInfo[0].SelectedSLA
 	return sla == "Retirar en sucursal (14f49b0)"
+}
+
+func parsePhoneNumber(phone string) string {
+	reg := regexp.MustCompile("[^0-9]+") // la regex remueve los datos no numericos
+	phone = reg.ReplaceAllString(phone, "")
+
+	if len(phone) > 10 {
+		return phone[len(phone)-10:]
+	}
+
+	return phone
 }
