@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registro de Cliente</title>
+    <style>
+        .activate-link {
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .activate-link:hover {
+            background-color: #0056b3;
+        }
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Nuevo cliente - {{clientId}}</h1>
+    <p>A continuación, encontrarás los detalles del registro:</p>
+
+    <ul>
+        <li><strong>Nombre:</strong> {{formData.firstName}} {{formData.lastName}}</li>
+        <li><strong>Email:</strong> {{formData.email}}</li>
+        <li><strong>DNI:</strong> {{formData.dni}}</li>
+        <li><strong>Nombre de la empresa:</strong> {{formData.companyName}}</li>
+        <li><strong>Condición tributaria:</strong> {{formData.taxCondition}}</li>
+        <li><strong>Acepta términos y condiciones:</strong> {{formData.acceptTermsAndConditions}}</li>
+        <li><strong>Tipo de servicio:</strong> {{formData.serviceType}}</li>
+    </ul>
+    <p>Se encuentran <strong>adjuntos</strong> en este mismo mensajes, todos los archivos enviados en el formulario.</p>
+
+    <p>Una vez validados los datos del nuevo cliente, puede darlo de alta haciendo clic en el siguiente enlace:</p>
+    <a href="{{activationLink}}" class="activate-link" target="_blank">Activar cuenta</a>
+
+    <p>O tambien ingresando a <a href="{{activationLink}}">{{activationLink}}</a></p>
+    <p>Atentamente,</p>
+    <p>Portal de clientes - Murata</p>
+</body>
+</html>

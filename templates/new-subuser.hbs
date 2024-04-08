@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Activación de Usuario</title>
+    <style>
+        .activate-link {
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .activate-link:hover {
+            background-color: #0056b3;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Activación de Usuario</h1>
+    <p>Estimado usuario,</p>
+    <p>Un administrador ha creado una cuenta para ti en nuestra aplicación. A continuación, encontrarás los detalles de tu cuenta:</p>
+
+    <ul>
+        <li><strong>Email:</strong> {{email}}</li>
+    </ul>
+
+    <p>Para activar tu cuenta y establecer una contraseña, haz clic en el siguiente enlace:</p>
+    <a href="{{activationLink}}" class="activate-link" target="_blank">Activar cuenta</a>
+    <p>O también entrando a: <strong>{{activationLink}}</strong></p>
+    <p>Después de activar tu cuenta, podrás acceder a la aplicación y comenzar a utilizar nuestro sistema.</p>
+
+    <p>Atentamente,</p>
+    <p>Portal de clientes - Murata</p>
+</body>
+
+</html>

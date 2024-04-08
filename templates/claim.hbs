@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{subject}}</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+        }
+
+        .complaint-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f7f7f7;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Reclamo - {{subject}}</h1>
+    <p>Estimado equipo de soporte,</p>
+    <p>Se ha presentado un reclamo relacionado con la empresa {{company.name}} (ID: {{company.clientId}}) en nuestro sistema. A continuación, se detallan los datos del reclamo:</p>
+
+    <div class="complaint-box">
+        <p><strong>Asunto:</strong> {{subject}}</p>
+        <p><strong>Mensaje:</strong></p>
+        <p>{{body}}</p>
+    </div>
+
+    <p>La empresa ha enviado un total de <strong>{{attachmentsLength}}</strong> archivos de prueba, que se encuntran adjuntos a este mismo mensaje.</p>
+
+    <p>Detalles de la empresa:</p>
+    <ul>
+        <li><strong>ID Cliente:</strong> {{company.clientId}}</li>
+        <li><strong>Nombre de la empresa:</strong> {{company.name}}</li>
+        <li><strong>Usuario:</strong> {{userEmail}}</li>
+    </ul>
+
+
+    <p>Atentamente,</p>
+    <p>Portal de clientes - Murata</p>
+</body>
+
+</html>
