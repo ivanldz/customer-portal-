@@ -85,6 +85,7 @@ func (v *VtexClient) PostEmail(email entities.Email) error {
 		return errors.New("error creating email")
 	}
 
+	fmt.Println("Mail sent successfully")
 	return nil
 }
 

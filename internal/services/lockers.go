@@ -2,7 +2,9 @@ package services
 
 import (
 	"fmt"
+	"regexp"
 	"trigger-retiro-sucursal/internal/entities"
+
 	"trigger-retiro-sucursal/internal/repositories"
 )
 
@@ -40,11 +42,12 @@ func IntegrateToLocker(orderData entities.HookData) error {
 	}
 	lockerSizeId := lockerSize.Content[0].ID
 
+	reg := regexp.MustCompile("[^0-9]+") // la regex remueve los datos no numericos
 	err = bw.OperationPickup(entities.OperationPickup{
 		LockerId:          lockerId,
 		LockerIdSize:      lockerSizeId,
 		Email:             order.ClientData.Email,
-		Phone:             order.ClientData.Phone,
+		Phone:             reg.ReplaceAllString(order.ClientData.Phone, ""),
 		ReceiptName:       order.ClientData.FirstName + " " + order.ClientData.LastName,
 		ExternalReference: order.OrderID,
 	})
